@@ -1,8 +1,8 @@
 # howbe
 howbe
-
-npm install
-server port is 4000 (http://localhost:4000)
-route -> /auth
-  login : /auth/login
-  signup : /auth/signup
+<hr>
+npm install<br>
+server port is 4000 (http://localhost:4000)<br>
+route -> /auth<br>
+  login : /auth/login<br>
+  signup : /auth/signup<br>
