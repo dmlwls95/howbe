@@ -16,12 +16,17 @@
       <ion-label></ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab4">
+    <ion-tab-button (click)="test()" tab="tab4">
       <ion-icon name="chatbox-ellipses-outline"></ion-icon>
       <ion-label>알림</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab5">
+    <ion-tab-button *ngIf="testb==false" tab="tab5">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>나</ion-label>
+    </ion-tab-button>
+    
+    <ion-tab-button *ngIf="testb==true" tab="tab6">
       <ion-icon name="person-outline"></ion-icon>
       <ion-label>나</ion-label>
     </ion-tab-button>

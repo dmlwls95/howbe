@@ -30,3 +30,9 @@
 .notosanskr * { 
  font-family: 'Noto Sans KR', sans-serif;
 }
+
+.my-custom-class .modal-wrapper {
+  position: absolute; 
+  top: 4%;
+  border-radius: 8px;
+}
