@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'signwithemail',
     loadChildren: () => import('./signup/signwithemail/signwithemail.module').then( m => m.SignwithemailPageModule)
+  },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
   }
 ];
 @NgModule({
