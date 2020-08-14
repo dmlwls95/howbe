@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { LoginPage } from '../login/login.page';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController, AnimationController } from '@ionic/angular';
+import { IonSlides } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { SignwithemailPage } from 'src/app/signup/signwithemail/signwithemail.page';
+import { enterAnimation, leaveAnimation } from '../../animations/modalanim';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -8,9 +12,16 @@ import { LoginPage } from '../login/login.page';
 })
 export class SignupPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  @ViewChild(IonSlides, { static: true }) slides: IonSlides;
+
+  slideOpts = {
+    allowTouchMove: false
+  };
+
+  constructor(public animationCtrl: AnimationController, public modalController: ModalController, private router: Router) { }
 
   ngOnInit() {
+    this.slides.update();
   }
 
   dismiss() {
@@ -18,18 +29,22 @@ export class SignupPage implements OnInit {
       'dismissed': true
     });
   }
-
-  signWithemail(){
-
-  }
-
-  async presentLogin(){
+  async signWithemail() {
     const modal = await this.modalController.create({
-      component: LoginPage,
-      cssClass: 'my-custom-class',
-      swipeToClose: true
+      component: SignwithemailPage,
+      enterAnimation,
+      leaveAnimation
     });
     return await modal.present();
   }
+
+  presentLogin(){
+    this.slides.slideNext();
+  }
+
+  presentSignup(){
+    this.slides.slidePrev();
+  }
+
 
 }

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { SignwithemailPageRoutingModule } from './signwithemail-routing.module';
 
-import { LoginPage } from './login.page';
+import { SignwithemailPage } from './signwithemail.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    SignwithemailPageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [SignwithemailPage]
 })
-export class LoginPageModule {}
+export class SignwithemailPageModule {}
