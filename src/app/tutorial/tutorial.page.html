@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>How to use howbe</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager="true" (ionSlideReachEnd) ="buttonON()">
+    <ion-slide>
+      <h1>First watch!</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Second upload!</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Third enjoy!</h1>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer mode="ios">
+  <section class="full-width">
+    
+    <ion-button  (click)="goNext()" expand="block" color="favorite" id="button" [disabled]=cnt>다음</ion-button>
+  </section>
+</ion-footer>
+
