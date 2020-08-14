@@ -18,3 +18,4 @@ tabs: 아래 탭<br>
 modal: signup<br>
 ------>login<br>
 choice: 관심사 선택 페이지<br>
+2020-08-14 tutorial 추가<br>
