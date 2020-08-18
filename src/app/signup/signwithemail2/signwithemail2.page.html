@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-icon (click)="dismiss()" name="chevron-back-outline"></ion-icon>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>all check</ion-label>
+      <ion-checkbox (click)="check('all')" color="favorite" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>HowBe 이용 약관</ion-label>
+      <ion-checkbox (ionChange)="check('service')" color="favorite"  [(ngModel)]="group[0].ischecked"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>HowBe의 개인정보 수집이용 등에 대한 동의</ion-label>
+      <ion-checkbox (ionChange)="check('privacy')" color="favorite"  [(ngModel)]="group[1].ischecked"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>광고성 정보 수신(선택)</ion-label>
+      <ion-checkbox (ionChange)="check('promo')" color="favorite"  [(ngModel)]="group[2].ischecked"></ion-checkbox>    </ion-item>
+  </ion-list>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="nextPage()" expand="full" color="favorite" [disabled]=cnt>다음</ion-button>
+</ion-footer>
