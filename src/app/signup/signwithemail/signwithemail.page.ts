@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Signwithemail2Page } from 'src/app/signup/signwithemail2/signwithemail2.page';
 import { enterAnimation, leaveAnimation } from '../../animations/modalanim';
-
+import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-signwithemail',
   templateUrl: './signwithemail.page.html',
@@ -12,7 +12,7 @@ export class SignwithemailPage implements OnInit {
 
   public birthDay;
 
-  constructor(public modalController: ModalController, public toast: ToastController) { }
+  constructor(public modalController: ModalController, public toast: ToastService) { }
 
   ngOnInit() {
   }
@@ -26,6 +26,7 @@ export class SignwithemailPage implements OnInit {
 
   async nextPage() {
     if(this.birthDay){
+      this.dismiss();
       const modal = await this.modalController.create({
         component: Signwithemail2Page,
         enterAnimation,
@@ -35,18 +36,10 @@ export class SignwithemailPage implements OnInit {
         }
       });
       return await modal.present();
-
     }else{
-      this.presentToast('생일을 입력해주세요.')
+      this.toast.presentToast('생일을 입력해주세요.');
     }
   }
 
-  async presentToast(str) {
-    const toast = await this.toast.create({
-      message: str,
-      duration: 2000
-    });
-    toast.present();
-  }
 
 }

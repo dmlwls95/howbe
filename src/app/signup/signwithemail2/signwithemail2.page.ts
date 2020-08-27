@@ -12,7 +12,8 @@ export class Signwithemail2Page implements OnInit {
   public group = [
     {val: 'service', ischecked: false},
     {val: 'privacy', ischecked: false},
-    {val: 'promo', ischecked: false}
+    {val: 'promo', ischecked: false},
+    {val: 'all', ischecked: false}
   ];
 
   public cnt = true;
@@ -31,9 +32,15 @@ export class Signwithemail2Page implements OnInit {
 
   check(val){
     if (val === 'all'){
-      this.group.forEach(res => {
-        res.ischecked = !res.ischecked;
-      });
+      if (this.group[3].ischecked === false){
+        for (let i = 0; i < 3; i++){
+          this.group[i].ischecked = false;
+        }
+      }else{
+        for (let i = 0; i < 3; i++){
+          this.group[i].ischecked = true;
+        }
+      }
     }else{
       if (this.group[0].ischecked === true && this.group[1].ischecked === true){
         this.cnt = false;
@@ -44,6 +51,7 @@ export class Signwithemail2Page implements OnInit {
   }
 
   async nextPage() {
+    this.dismiss();
     const modal = await this.modalController.create({
       component: Signwithemail3Page,
       enterAnimation,

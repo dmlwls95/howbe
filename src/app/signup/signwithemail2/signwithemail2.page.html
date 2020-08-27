@@ -7,7 +7,7 @@
   <ion-list>
     <ion-item>
       <ion-label>all check</ion-label>
-      <ion-checkbox (click)="check('all')" color="favorite" ></ion-checkbox>
+      <ion-checkbox (ionChange)="check('all')" color="favorite" [(ngModel)]="group[3].ischecked" ></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>HowBe 이용 약관</ion-label>

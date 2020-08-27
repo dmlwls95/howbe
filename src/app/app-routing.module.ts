@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'signwithemail3',
     loadChildren: () => import('./signup/signwithemail3/signwithemail3.module').then( m => m.Signwithemail3PageModule)
+  },
+  {
+    path: 'signwithemail4',
+    loadChildren: () => import('./signup/signwithemail4/signwithemail4.module').then( m => m.Signwithemail4PageModule)
   }
 
 ];

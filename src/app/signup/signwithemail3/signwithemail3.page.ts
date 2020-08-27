@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { enterAnimation, leaveAnimation } from 'src/app/animations/modalanim';
+import { Signwithemail4Page } from 'src/app/signup/signwithemail4/signwithemail4.page';
+
 @Component({
   selector: 'app-signwithemail3',
   templateUrl: './signwithemail3.page.html',
@@ -27,10 +30,8 @@ export class Signwithemail3Page implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30),
-        //Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
-      ])),
-      check: new FormControl(this.check),
-      birthday: new FormControl(this.birthday)
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
+      ]))
     });
    }
 
@@ -44,8 +45,19 @@ export class Signwithemail3Page implements OnInit {
     });
   }
 
-  checkNsend(){
-    console.log(this.accountfrm);
+  async nextPage() {
+    this.dismiss();
+    const modal = await this.modalController.create({
+      component: Signwithemail4Page,
+      enterAnimation,
+      leaveAnimation,
+      componentProps: {
+        accountfrm: this.accountfrm,
+        check: this.check,
+        birthday: this.birthday
+      }
+    });
+    return await modal.present();
   }
 
 

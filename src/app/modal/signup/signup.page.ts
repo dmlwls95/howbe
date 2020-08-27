@@ -30,6 +30,7 @@ export class SignupPage implements OnInit {
     });
   }
   async signWithemail() {
+    this.dismiss();
     const modal = await this.modalController.create({
       component: SignwithemailPage,
       enterAnimation,
