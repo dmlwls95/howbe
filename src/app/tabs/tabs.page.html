@@ -21,15 +21,16 @@
       <ion-label>알림</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="testb==false" tab="tab5">
+    <ion-tab-button *ngIf="isloggedIn===false" tab="tab5">
+      <ion-icon  name="person-outline"></ion-icon>
+      <ion-label>나</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="isloggedIn===true" tab="tab6">
       <ion-icon name="person-outline"></ion-icon>
       <ion-label>나</ion-label>
     </ion-tab-button>
-    
-    <ion-tab-button *ngIf="testb==true" tab="tab6">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>나</ion-label>
-    </ion-tab-button>
+
   </ion-tab-bar>
 
 </ion-tabs>

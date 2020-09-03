@@ -13,9 +13,11 @@
     </ion-toolbar>
   </ion-header>
   <ion-icon name="person-outline"></ion-icon><br>
+  <img [src]="profileImage" clt="Select Image"/>
+  
   6<br>
   <section class="full-width">
-    <ion-button expand="full" color="favorite">가입하기</ion-button>
+    <ion-button (click)="getProfileImage()" expand="full" color="favorite">로그아웃</ion-button>
   </section>
 </ion-content>
 

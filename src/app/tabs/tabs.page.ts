@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -7,13 +8,25 @@ import { Storage } from '@ionic/storage';
 })
 export class TabsPage {
 
-  public testb = false;
-  constructor(private storage: Storage) {
+  public isloggedIn = false;
+  constructor(private auth: AuthService, private router: Router) {
 
   }
 
+
   test(){
-    this.storage.clear();
+  }
+
+  ionViewWillEnter(){
+    console.log('ionviewwillenter');
+    this.auth.authenticationState.subscribe((val) => {
+      if (val){
+        this.isloggedIn = true;
+        this.router.navigate(['tabs/tab1']);
+      } else {
+        this.isloggedIn = false;
+      }
+    });
   }
 
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from './services/auth/auth.service';
 import { Storage } from '@ionic/storage';
-import { async } from '@angular/core/testing';
+import { TabsPage } from '../app/tabs/tabs.page';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +15,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private tabs: TabsPage
   ) {
   }
 
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated();
   }*/
   return this.storage.get('ischecked').then(res => {
-    if(res){
+    if (res){
       return true;
     }
     this.router.navigate(['tutorial']);

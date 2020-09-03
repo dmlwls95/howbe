@@ -10,6 +10,11 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: '*',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
     path: 'choice',
     loadChildren: () => import('./choice/choice.module').then( m => m.ChoicePageModule)
   },
@@ -28,7 +33,8 @@ const routes: Routes = [
   {
     path: 'tutorial',
     loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
-  },  {
+  },
+  {
     path: 'signwithemail2',
     loadChildren: () => import('./signup/signwithemail2/signwithemail2.module').then( m => m.Signwithemail2PageModule)
   },

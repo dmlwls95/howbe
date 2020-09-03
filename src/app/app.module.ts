@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HTTP } from '@ionic-native/http/ngx';
+import { TabsPage } from './tabs/tabs.page';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,6 +26,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    TabsPage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     HTTP
   ],

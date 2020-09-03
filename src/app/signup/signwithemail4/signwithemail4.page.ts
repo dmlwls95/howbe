@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule, Form } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-signwithemail4',
   templateUrl: './signwithemail4.page.html',
@@ -28,6 +28,7 @@ export class Signwithemail4Page implements OnInit {
 
   constructor(
     private signserv: SignupService,
+    private authserv: AuthService,
     public modalController: ModalController,
     public formBuilder: FormBuilder,
     public reactiveFormsModule: ReactiveFormsModule

@@ -1,34 +1,50 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
-import { Platform } from '@ionic/angular';
-import { async } from 'rxjs/internal/scheduler/async';
+import { HTTP } from '@ionic-native/http/ngx';
+import { apiurl } from '../Environments';
+import { ToastService } from '../toast.service';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   authenticationState = new BehaviorSubject(false);
   public isOn = false;
-  constructor(private storage: Storage, private platform: Platform) {
-    this.platform.ready().then(async () => {
-      await this.storage.get('ischecked').then( (val) => {
-        if(val){
+  constructor(private http: HTTP, public toast: ToastService, private storage: Storage) {}
+
+   signwithemail(body){
+    this.http.post(`${apiurl}/auth/login`, body, {} )
+    .then(res => {
+      if (res.status === 200){
+        this.storage.set('jwt', (JSON.parse(res.data).token))
+        .then(() => {
           this.authenticationState.next(true);
-        }
-       });
+        });
+      } else {
+        this.toast.presentToast('로그인 실패');
+      }
     });
-
    }
 
-   checkHobby(){
-       this.storage.get('ischecked').then((val) => {
-        console.log(val);
-        this.isOn = val;
-       });
-   }
+   checkauth(){
+    return this.storage.get('jwt')
+    .then(res => {
+      if (res){
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  logout(){
+    return this.storage.remove('jwt').then(()=>{
+      this.authenticationState.next(false);
+    })
+  }
+
 
    isAuthenticated() {
-    console.log(this.authenticationState.value);
     return this.authenticationState.value;
   }
 }
