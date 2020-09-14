@@ -4,6 +4,7 @@ import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SignwithemailPage } from 'src/app/signup/signwithemail/signwithemail.page';
 import { enterAnimation, leaveAnimation } from '../../animations/modalanim';
+import { Signinwithemail1Page } from 'src/app/signin/signinwithemail1/signinwithemail1.page';
 
 @Component({
   selector: 'app-signup',
@@ -29,13 +30,29 @@ export class SignupPage implements OnInit {
       'dismissed': true
     });
   }
+
   async signWithemail() {
+    this.dismiss();
     const modal = await this.modalController.create({
       component: SignwithemailPage,
       enterAnimation,
       leaveAnimation
     });
     return await modal.present();
+  }
+
+  async signinWithemail() {
+    this.dismiss();
+    const modal = await this.modalController.create({
+      component: Signinwithemail1Page,
+      enterAnimation,
+      leaveAnimation
+    });
+    return await modal.present();
+  }
+
+  ionViewWillEnter(){
+    this.slides.update();
   }
 
   presentLogin(){

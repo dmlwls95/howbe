@@ -11,7 +11,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HTTP } from '@ionic-native/http/ngx';
+import { TabsPage } from './tabs/tabs.page';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +23,8 @@ import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
@@ -28,7 +33,9 @@ import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
     Camera,
     File,
     PhotoLibrary,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    TabsPage,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    HTTP
   ],
   bootstrap: [AppComponent]
 })

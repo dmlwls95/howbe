@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SignupPage } from '../modal/signup/signup.page';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-tab5',
   templateUrl: './tab5.page.html',
@@ -9,7 +9,8 @@ import { SignupPage } from '../modal/signup/signup.page';
 })
 export class Tab5Page implements OnInit {
 
-  constructor(public modalController: ModalController) {
+  body;
+  constructor(public modalController: ModalController, private auth: AuthService) {
 
   }
 
@@ -23,6 +24,14 @@ export class Tab5Page implements OnInit {
       swipeToClose: true
     });
     return await modal.present();
+  }
+
+  presentlogin(){
+    this.body = {
+      email : 'dmlwls95@naver.com',
+      password: 'vndn9504'
+    };
+    this.auth.signwithemail(this.body);
   }
 
 }

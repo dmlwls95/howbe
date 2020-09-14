@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="dismiss()" name="chevron-back-outline"></ion-icon>
+    <ion-title>로그인</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="passwordfrm">
+    <ion-item>
+      <ion-label position="floating">password</ion-label>
+      <ion-input formControlName="password" name="inputpassword" type="password"></ion-input>
+    </ion-item>
+
+    <div class="err-message">
+      <ng-container *ngFor="let err of error_message.password">
+        <div class="err-message" *ngIf="passwordfrm.get('password').hasError(err.type) && (passwordfrm.get('password').dirty || passwordfrm.get('password').touched)">
+          {{err.message}}
+        </div>
+      </ng-container>
+    </div>
+    
+  </form>
+  <ion-button expand="full" color="favorite" (click)="checkNsend()">다음</ion-button>
+</ion-content>
