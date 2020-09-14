@@ -45,7 +45,15 @@ const routes: Routes = [
   {
     path: 'signwithemail4',
     loadChildren: () => import('./signup/signwithemail4/signwithemail4.module').then( m => m.Signwithemail4PageModule)
+  },  {
+    path: 'signinwithemail1',
+    loadChildren: () => import('./signin/signinwithemail1/signinwithemail1.module').then( m => m.Signinwithemail1PageModule)
+  },
+  {
+    path: 'signinwithemail2',
+    loadChildren: () => import('./signin/signinwithemail2/signinwithemail2.module').then( m => m.Signinwithemail2PageModule)
   }
+
 
 ];
 @NgModule({

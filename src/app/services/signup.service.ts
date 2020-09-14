@@ -21,4 +21,27 @@ export class SignupService {
       }
     });
   }
+
+  sendSMSauth(phonenum, islogin: boolean){
+    return new Promise((resolve, reject) => {
+      this.http.post(`${apiurl}/auth/sendsmssign`, {phone: phonenum, itislogin: islogin}, {})
+      .then(res => {
+        console.log(res);
+        if (res.status === 200){
+          this.toast.presentToast('인증번호를 발송했습니다');
+          resolve(res.data);
+        }
+      }, (err) => {
+        if (err.status === 403){
+          this.toast.presentToast('이미 존재하는 번호입니다.');
+          reject(err.status);
+        }
+        if (err.status === 402){
+          this.toast.presentToast('존재하지않는 유저입니다.');
+          reject(err.status);
+        }
+        reject(err);
+      });
+    });
+  }
 }

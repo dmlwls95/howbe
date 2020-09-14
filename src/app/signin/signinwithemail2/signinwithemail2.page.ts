@@ -3,16 +3,15 @@ import { ModalController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule, Form } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+
 @Component({
-  selector: 'app-signwithemail4',
-  templateUrl: './signwithemail4.page.html',
-  styleUrls: ['./signwithemail4.page.scss'],
+  selector: 'app-signinwithemail2',
+  templateUrl: './signinwithemail2.page.html',
+  styleUrls: ['./signinwithemail2.page.scss'],
 })
-export class Signwithemail4Page implements OnInit {
+export class Signinwithemail2Page implements OnInit {
 
   @Input() accountfrm: FormGroup;
-  @Input() birthday: string;
-  @Input() check;
   @Input() howtoauth: string;
 
   passwordfrm: FormGroup;
@@ -26,23 +25,14 @@ export class Signwithemail4Page implements OnInit {
   };
 
   body;
-
   constructor(
-    private signserv: SignupService,
-    private authserv: AuthService,
     public modalController: ModalController,
     public formBuilder: FormBuilder,
-    public reactiveFormsModule: ReactiveFormsModule
-    ) {
-      this.passwordfrm = this.formBuilder.group({
-        password: new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(32),
-          Validators.pattern('(?=.*\d)(?=.*[a-z]).{8,}')
-        ]))
-      });
-    }
+    public reactiveFormsModule: ReactiveFormsModule,
+    private auth: AuthService
+  ) {
+    this.passwordfrm = this.formBuilder.group({ password: new FormControl('')});
+   }
 
   ngOnInit() {
   }
@@ -58,20 +48,16 @@ export class Signwithemail4Page implements OnInit {
       this.body = {
         email: this.accountfrm.value.phone,
         howto: 'phone',
-        password: this.passwordfrm.value.password,
-        check: this.check,
-        birthday: this.birthday
+        password: this.passwordfrm.value.password
       };
     } else {
       this.body = {
         email: this.accountfrm.value.email,
         howto: 'email',
-        password: this.passwordfrm.value.password,
-        check: this.check,
-        birthday: this.birthday
+        password: this.passwordfrm.value.password
       };
     }
-    this.signserv.signwithEmail(this.body);
+    this.auth.signwithemail(this.body);
     this.dismiss();
   }
 

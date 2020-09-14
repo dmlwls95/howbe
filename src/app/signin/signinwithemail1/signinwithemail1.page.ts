@@ -2,20 +2,17 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ModalController, IonSlides  } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { enterAnimation, leaveAnimation } from 'src/app/animations/modalanim';
-import { Signwithemail4Page } from 'src/app/signup/signwithemail4/signwithemail4.page';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { SignupService } from 'src/app/services/signup.service';
+import { Signinwithemail2Page } from '../signinwithemail2/signinwithemail2.page';
+
 @Component({
-  selector: 'app-signwithemail3',
-  templateUrl: './signwithemail3.page.html',
-  styleUrls: ['./signwithemail3.page.scss'],
+  selector: 'app-signinwithemail1',
+  templateUrl: './signinwithemail1.page.html',
+  styleUrls: ['./signinwithemail1.page.scss'],
 })
-export class Signwithemail3Page implements OnInit {
+export class Signinwithemail1Page implements OnInit {
 
   @ViewChild(IonSlides, { static: true }) slides: IonSlides;
-
-  @Input() birthday: string;
-  @Input() check;
 
   public isrightPhone = 'reject';
   accountfrm: FormGroup;
@@ -46,8 +43,7 @@ export class Signwithemail3Page implements OnInit {
     public modalController: ModalController,
     public formBuilder: FormBuilder,
     public reactiveFormsModule: ReactiveFormsModule,
-    private auth: AuthService,
-    private signup: SignupService
+    private auth: AuthService
     ) {
     this.howtoauth = 'phone';
     this.accountfrm = this.formBuilder.group({
@@ -85,7 +81,7 @@ export class Signwithemail3Page implements OnInit {
 
   sendsmsauth(){
     this.isrightPhone = 'pending';
-    this.signup.sendSMSauth(this.phonefrm.value.phone, false)
+    this.auth.sendSMSauth(this.phonefrm.value.phone, true)
     .then(res => {
       this.isrightPhone = 'pending';
     })
@@ -98,10 +94,10 @@ export class Signwithemail3Page implements OnInit {
     this.checknum.patchValue({phone: this.phonefrm.value.phone});
     this.auth.authNumber(this.checknum.value)
     .then(res => {
-      this.isrightPhone = 'resolve';
       this.nextPage(this.howtoauth);
     });
   }
+
   async nextPage(how) {
     this.dismiss();
     let tmp;
@@ -111,14 +107,12 @@ export class Signwithemail3Page implements OnInit {
       tmp = this.accountfrm;
     }
     const modal = await this.modalController.create({
-      component: Signwithemail4Page,
+      component: Signinwithemail2Page,
       enterAnimation,
       leaveAnimation,
       componentProps : {
         accountfrm: tmp,
-        howtoauth: how,
-        check: this.check,
-        birthday: this.birthday
+        howtoauth: how
       }
     });
     return await modal.present();

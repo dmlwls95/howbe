@@ -38,13 +38,54 @@ export class AuthService {
   }
 
   logout(){
-    return this.storage.remove('jwt').then(()=>{
+    return this.storage.remove('jwt').then(() => {
       this.authenticationState.next(false);
-    })
+    });
   }
 
 
    isAuthenticated() {
     return this.authenticationState.value;
+  }
+
+  sendSMSauth(phonenum, islogin: boolean){
+    return new Promise((resolve, reject) => {
+      this.http.post(`${apiurl}/auth/sendsmsauth`, {phone: phonenum, itislogin: islogin}, {})
+      .then(res => {
+        console.log(res);
+        if (res.status === 200){
+          this.toast.presentToast('인증번호를 발송했습니다');
+          resolve(res.data);
+        }
+      }, (err) => {
+        if (err.status === 403){
+          this.toast.presentToast('이미 존재하는 번호입니다.');
+          reject(err.status);
+        }
+        if (err.status === 402){
+          this.toast.presentToast('존재하지않는 유저입니다.');
+          reject(err.status);
+        }
+        reject(err);
+      });
+    });
+  }
+
+  authNumber(isnumber){
+    return new Promise((resolve, reject) => {
+      this.http.post(`${apiurl}/auth/checksmsauth`, {number: isnumber}, {})
+      .then(res => {
+        console.log(res.status);
+        if (res.status === 200){
+          this.toast.presentToast('인증완료');
+          resolve(res.data);
+        } else {
+          this.toast.presentToast('인증번호가 일치하지 않습니다');
+          resolve(res.data);
+        }
+      }, (err) => {
+        reject(err);
+      });
+    });
   }
 }
