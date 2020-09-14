@@ -31,6 +31,14 @@ const routes: Routes = [
   },  {
     path: 'upload',
     loadChildren: () => import('./modal/upload/upload.module').then( m => m.UploadPageModule)
+  },
+  {
+    path: 'phtlib',
+    loadChildren: () => import('./phtlib/phtlib.module').then( m => m.PhtlibPageModule)
+  },
+  {
+    path: 'makeup',
+    loadChildren: () => import('./makeup/makeup.module').then( m => m.MakeupPageModule)
   }
 
 ];
