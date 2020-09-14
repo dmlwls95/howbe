@@ -4,8 +4,12 @@ import { AuthGuard } from './AuthGuard.guard';
 
 const routes: Routes = [
   {
-    path: '*'
-    ,
+    path: '',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: '*',
     canActivate: [AuthGuard],
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },

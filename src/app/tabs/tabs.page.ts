@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class TabsPage {
 
   public testb = false;
-  constructor(private storage: Storage, public modalController: ModalController,private auth: AuthService, private router: Router) {
+  constructor(private storage: Storage, public modalController: ModalController, private auth: AuthService, private router: Router) {
 
   }
   public isloggedIn = false;

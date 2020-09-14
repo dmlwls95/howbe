@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
@@ -28,7 +27,6 @@ export class PhtlibPage implements OnInit {
   constructor(private webview: WebView,
               private photolibrary: PhotoLibrary,
               private sanitizer: DomSanitizer,
-              private camera: Camera,
               public modalCtrl: ModalController,
               private router: Router,
               public filee: File) { }

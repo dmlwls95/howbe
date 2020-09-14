@@ -5,5 +5,6 @@
         <domain includeSubdomains="true">192.168.1.58</domain>
         <domain includeSubdomains="true">211.184.123.35</domain>
         <domain includeSubdomains="true">192.168.0.26</domain>
+        <domain includeSubdomains="true">fonts.googleapis.com</domain>
     </domain-config>
 </network-security-config>

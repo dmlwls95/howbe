@@ -34,8 +34,8 @@ import { TabsPage } from './tabs/tabs.page';
     File,
     PhotoLibrary,
     TabsPage,
+    HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HTTP
   ],
   bootstrap: [AppComponent]
 })
