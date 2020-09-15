@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="dismiss()" name="chevron-back-outline"></ion-icon>
+    <ion-title>가입하기</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h3>생일이 언제인가요?</h3>
+<p>HowBe의 사용 연령 기준을 충족하는지 확인하기 위해 생년월일을 제공해주세요.</p>
+
+<ion-item>
+  <ion-label>생일</ion-label>
+  <ion-datetime [(ngModel)]="birthDay" id="birthday" displayFormat="YYYY년 M월 DD일"></ion-datetime>
+</ion-item>
+<ion-button color="favorite" expand="full" (click)="nextPage()">다음</ion-button>
+
+</ion-content>

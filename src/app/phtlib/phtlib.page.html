@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+ 
+    <ion-grid class = "container">
+      <ion-col>
+        <ion-button (click)="goBack()" expand="block" fill="outline" color="favorite" id="button">이전</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-title>Library</ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" fill="outline" color="favorite" id="button">다음</ion-button>
+      </ion-col>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let pic of tmp" size="4">
+        <ion-img [src]="pic" (click)="clicked()"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+
+<ion-footer class="footbar">
+  <ion-list>
+    <ion-item class="items">
+
+      <ion-thumbnail slot="start">
+        <ion-img [src]="thumbnail[0]">
+        </ion-img>
+      </ion-thumbnail>
+
+      <ion-thumbnail slot="start">
+        <ion-img>
+        </ion-img>
+      </ion-thumbnail>
+
+      <ion-thumbnail slot="start">
+        <ion-img>
+        </ion-img>
+      </ion-thumbnail>
+   
+      <ion-thumbnail slot="start">
+        <ion-img>
+        </ion-img>
+      </ion-thumbnail>
+
+      <ion-thumbnail slot="start">
+        <ion-img>
+        </ion-img>
+      </ion-thumbnail>
+    
+    </ion-item>
+  </ion-list>
+</ion-footer>

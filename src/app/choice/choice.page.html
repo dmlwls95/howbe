@@ -1,0 +1,30 @@
+<ion-header>
+  <p>건너뛰기</p>
+</ion-header>
+
+<ion-content>
+  <h1>관심사 선택</h1>
+  <p>맞춤화된 태그 추천을 받으세요</p>
+
+  <ion-grid class="grid-categories">
+    <ion-row *ngFor="let item of hobby; let i = index">
+      <ion-col *ngIf="i % 2 == 0">
+        <ion-checkbox (ionChange)="selected($event,item)"></ion-checkbox>{{item}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="grid-categories">
+    <ion-row *ngFor="let item of hobby; let i = index">
+      <ion-col *ngIf="i % 2 != 0">
+        <ion-checkbox (ionChange)="selected($event,item)"></ion-checkbox>{{item}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+
+<ion-footer mode="ios">
+    <section class="full-width">
+      <ion-button (click)="goNext()" expand="full" color="favorite">다음</ion-button>
+    </section>
+</ion-footer>

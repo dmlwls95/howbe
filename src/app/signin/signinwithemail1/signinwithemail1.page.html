@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-icon (click)="dismiss()" name="chevron-back-outline"></ion-icon>
+  <ion-title>로그인</ion-title>
+  <br>
+  <ion-button (click)="presentphone()">휴대전화로 로그인</ion-button>
+  <ion-button (click)="presentemail()">이메일로 로그인</ion-button>
+</ion-header>
+
+<ion-content>
+<ion-slides scroll-y="false" [options]="slideOpts">
+  <ion-slide>
+    <form *ngIf="isrightPhone === 'reject'" [formGroup]="phonefrm">
+      <ion-item>
+        <ion-label  position="floating">휴대전화번호</ion-label>
+        <ion-input  type="tel" pattern="[0-9]*" formControlName="phone" name="inputphone"></ion-input>
+        
+      </ion-item>
+  
+      <div  class="err-message">
+        <ng-container *ngFor="let err of error_message.phone">
+          <div class="err-message" *ngIf="accountfrm.get('phone').hasError(err.type) && (accountfrm.get('phone').dirty || accountfrm.get('phone').touched)">
+            {{err.message}}
+          </div>
+        </ng-container>
+      </div>
+    </form>
+    <form *ngIf="isrightPhone === 'pending'" [formGroup]="checknum">
+      <ion-label  position="floating">인증번호</ion-label>
+      <ion-input type="tel" pattern="[0-9]*" formControlName="checknumber" name="checknumber"></ion-input>
+    </form>
+    <ion-button *ngIf="isrightPhone === 'reject'" expand="full" color="favorite" (click)="sendsmsauth()">인증번호전송</ion-button>
+    <ion-button *ngIf="isrightPhone === 'pending'" expand="full" color="favorite" (click)="checksmsauth()">인증번호확인</ion-button>
+    <ion-button *ngIf="isrightPhone === 'resolve'" expand="full" color="favorite" (click)="nextPage('phone')">다음</ion-button>
+
+  </ion-slide>
+  <ion-slide>
+    <form [formGroup]="accountfrm">
+      <ion-item>
+        <ion-label position="floating">email</ion-label>
+        <ion-input formControlName="email" name="inputemail"></ion-input>
+      </ion-item>
+  
+      <div class="err-message">
+        <ng-container *ngFor="let err of error_message.email">
+          <div class="err-message" *ngIf="accountfrm.get('email').hasError(err.type) && (accountfrm.get('email').dirty || accountfrm.get('email').touched)">
+            {{err.message}}
+          </div>
+        </ng-container>
+      </div>
+    </form>
+    <ion-button expand="full" color="favorite" (click)="nextPage('email')">다음</ion-button>
+  </ion-slide>
+</ion-slides>
+
+
+
+</ion-content>
