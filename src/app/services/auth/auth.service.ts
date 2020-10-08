@@ -4,25 +4,34 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { apiurl } from '../Environments';
 import { ToastService } from '../toast.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authenticationState = new BehaviorSubject(false);
+  authenticationState = new BehaviorSubject<boolean>(null);
   public isOn = false;
-  constructor(private http: HTTP, public toast: ToastService, private storage: Storage) {}
+  constructor(private http: HTTP, public toast: ToastService, private storage: Storage, private router: Router) {}
 
-   signwithemail(body){
+   signwithemail(body, isnoob){
+    const noobie = isnoob;
     this.http.post(`${apiurl}/auth/login`, body, {} )
     .then(res => {
       if (res.status === 200){
         this.storage.set('jwt', (JSON.parse(res.data).token))
         .then(() => {
-          this.authenticationState.next(true);
+          return this.authenticationState.next(true);
         });
-      } else {
-        this.toast.presentToast('로그인 실패');
+        if (noobie){
+          this.router.navigate(['tutorial']);
+        }else{
+          this.router.navigate(['tabs']);
+        }
       }
+    })
+    .catch( err =>{
+      this.toast.presentToast('아이디와 비밀번호를 확인해주세요!');
     });
    }
 
@@ -48,9 +57,9 @@ export class AuthService {
     return this.authenticationState.value;
   }
 
-  sendSMSauth(phonenum, islogin: boolean){
+  sendSMSauth(phonenum){
     return new Promise((resolve, reject) => {
-      this.http.post(`${apiurl}/auth/sendsmsauth`, {phone: phonenum, itislogin: islogin}, {})
+      this.http.post(`${apiurl}/auth/sendsmsauth`, {phone: phonenum}, {})
       .then(res => {
         console.log(res);
         if (res.status === 200){

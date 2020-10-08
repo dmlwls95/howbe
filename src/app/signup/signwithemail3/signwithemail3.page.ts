@@ -23,13 +23,13 @@ export class Signwithemail3Page implements OnInit {
   checknum: FormGroup;
   howtoauth;
   error_message = {
-    'email': [
+    email: [
       { type: 'required', message: '이메일 주소를 적어주세요.' },
       { type: 'minlength', message: '최소 6자 이상 입력해주세요.' },
       { type: 'maxlength', message: '최대 30자 미만 입력해주세요.' },
       { type: 'pattern', message: '올바르지 않은 이메일입니다.' },
     ],
-    'phone': [
+    phone: [
       { type: 'required', message: '휴대폰 번호를 적어주세요' },
       { type: 'minlength', message: '최소 8자 이상 입력해주세요.' },
       { type: 'maxlength', message: '최대 12자 미만 입력해주세요.' },

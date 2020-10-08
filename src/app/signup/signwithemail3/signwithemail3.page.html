@@ -18,7 +18,7 @@
     
         <div  class="err-message">
           <ng-container *ngFor="let err of error_message.phone">
-            <div class="err-message" *ngIf="accountfrm.get('phone').hasError(err.type) && (accountfrm.get('phone').dirty || accountfrm.get('phone').touched)">
+            <div class="err-message" *ngIf="phonefrm.get('phone').hasError(err.type) && (phonefrm.get('phone').dirty || phonefrm.get('phone').touched)">
               {{err.message}}
             </div>
           </ng-container>

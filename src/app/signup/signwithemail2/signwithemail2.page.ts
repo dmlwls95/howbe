@@ -15,7 +15,6 @@ export class Signwithemail2Page implements OnInit {
     {val: 'promo', ischecked: false},
     {val: 'all', ischecked: false}
   ];
-
   public cnt = true;
 
   @Input() birthday: string;

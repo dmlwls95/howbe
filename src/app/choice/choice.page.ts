@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { HobbyService } from '../services/hobby.service';
 @Component({
   selector: 'app-choice',
   templateUrl: './choice.page.html',
@@ -8,26 +9,45 @@ import { Router } from '@angular/router';
 })
 export class ChoicePage implements OnInit {
 
-  public hobby = ['댄스', '요리', '달고나', '디저트'];
-  private select = {};
-  constructor(private storage: Storage, private router: Router) {
+  public hobby ;
+  private select = [];
+  constructor(private storage: Storage, private router: Router, private hobs: HobbyService) {
 
   }
 
   ngOnInit() {
-    this.hobby.forEach((val) => {
-      let tmp = {ischecked: false};
-      this.select[val] = tmp;
+    this.hobs.getHobby()
+    .then(res => {
+      this.hobby = res;
+    })
+    .then(() => {
+      const hob = JSON.parse(this.hobby);
+      this.hobby = hob;
+      hob.forEach((val) => {
+        const tmp = {
+          name: val,
+          ischecked: false
+        };
+        this.select.push(tmp);
+        console.log(this.select);
+      });
+      return console.log('howbed');
+    });
+  }
+  selected(event, item){
+    this.select.forEach(el => {
+      if (el.name === item){
+        el.ischecked = event.detail.checked;
+      }
     });
   }
 
-  selected(event, item){
-    this.select[item].ischecked = event.detail.checked;
-  }
-
   goNext(){
-    this.storage.set('hobby', this.select);
-    this.storage.set('ischecked', true);
-    this.router.navigate(['tabs']);
+    // this.storage.set('hobby', this.select);
+    // this.storage.set('ischecked', true);
+    this.hobs.sendHobby(this.select)
+    .then(() => {
+      return this.router.navigate(['tabs']);
+    });
   }
 }

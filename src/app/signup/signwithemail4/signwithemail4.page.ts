@@ -3,6 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule, Form } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signwithemail4',
   templateUrl: './signwithemail4.page.html',
@@ -32,7 +33,8 @@ export class Signwithemail4Page implements OnInit {
     private authserv: AuthService,
     public modalController: ModalController,
     public formBuilder: FormBuilder,
-    public reactiveFormsModule: ReactiveFormsModule
+    public reactiveFormsModule: ReactiveFormsModule,
+    private router: Router
     ) {
       this.passwordfrm = this.formBuilder.group({
         password: new FormControl('', Validators.compose([

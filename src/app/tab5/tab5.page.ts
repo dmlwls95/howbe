@@ -31,7 +31,7 @@ export class Tab5Page implements OnInit {
       email : 'dmlwls95@naver.com',
       password: 'vndn9504'
     };
-    this.auth.signwithemail(this.body);
+    this.auth.signwithemail(this.body, true);
   }
 
 }

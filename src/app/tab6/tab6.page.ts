@@ -32,7 +32,7 @@ export class Tab6Page implements OnInit {
 
   logout(){
     this.auth.logout();
-    this.router.navigate(['tabs/tab1']);
+    this.router.navigate(['signup']);
   }
 
 }

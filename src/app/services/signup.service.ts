@@ -11,11 +11,12 @@ export class SignupService {
   constructor(private http: HTTP, public toast: ToastService, private auth: AuthService) { }
 
   signwithEmail(body){
+    this.http.setHeader('*', String('Content-Type'), String('application/json'));
     this.http.post(`${apiurl}/auth/signup`, body, {})
     .then(data => {
       if (data.status === 200){
         this.toast.presentToast('회원가입 완료');
-        this.auth.signwithemail(body);
+        this.auth.signwithemail(body, true);
       }else{
         this.toast.presentToast('회원가입 실패');
       }
