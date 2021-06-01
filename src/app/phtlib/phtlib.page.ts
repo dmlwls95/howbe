@@ -6,7 +6,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+import { Media } from '@capacitor-community/media';
 
+const media = new Media();
 // import { Plugins, CameraResultType, Capacitor, FilesystemDirectory, CameraPhoto, CameraSource } from '@capacitor/core';
 // import { PhotoService } from '../services/photo.service';
 
@@ -39,10 +41,12 @@ bfunction(){
 }
 
 ionViewWillEnter() {
-  this.photolibrary.requestAuthorization().then(() => {
+  /*this.photolibrary.requestAuthorization().then(() => {
     this.photolibrary.getLibrary()
     .subscribe(res => {
+      // tslint:disable-next-line: forin
       for(let i in res){
+        // tslint:disable-next-line: prefer-for-of
         for(let l=0; l< res[i].length ; l++){
         console.log(res[i][l]);
         let url: string;
@@ -55,7 +59,12 @@ ionViewWillEnter() {
   })
   .catch(err => {
     console.log('permissions werent granted');
-  });
+  });*/
+
+  media
+  .getAlbums()
+  .then(console.log)
+  .catch(console.log);
 }
 
 clicked(){

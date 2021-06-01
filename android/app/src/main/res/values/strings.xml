@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HowBe</string>
+    <string name="title_activity_main">HowBe</string>
+    <string name="package_name">com.underduck.howbe</string>
+    <string name="custom_url_scheme">com.underduck.howbe</string>
+</resources>
